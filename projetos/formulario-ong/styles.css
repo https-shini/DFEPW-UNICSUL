@@ -1,0 +1,56 @@
+/* Configuração geral para um visual limpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+/* O corpo do nosso formulário com a cor primária Cruzeiro */
+form {
+    background-color: #002b5c; /* Azul Escuro Institucional */
+    color: #ffffff;
+    padding: 30px; /* Conforto interno para os campos */
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    max-width: 450px;
+}
+/* Deixando as caixas de texto mais modernas */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura */
+}
+/* Feedback visual: quando o aluno clica na caixa */
+input:focus, textarea:focus, select:focus {
+    outline: 3px solid #ffcc00; /* Amarelo Suave para foco e acessibilidade */
+    background-color: #fffef0;
+}
+/* Botão em destaque Amarelo Suave */
+button {
+    background-color: #ffcc00; 
+    color: #002b5c;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s; /* Suaviza a troca de cor */
+}
+/* Interatividade: reação gentil ao passar o mouse */
+button:hover {
+    background-color: #e6b800; /* Tom de ouro levemente mais intenso */
+    transform: scale(1.02); /* Pequeno pulso de feedback */
+}
+fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+}

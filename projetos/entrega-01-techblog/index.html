@@ -1,0 +1,205 @@
+<!-- ================================================
+     DECLARAÇÃO HTML5
+     Informa ao navegador o tipo de documento.
+     Sempre a PRIMEIRA linha de qualquer página HTML5.
+     ================================================ -->
+<!DOCTYPE html>
+
+<!-- Elemento raiz. lang="pt-br" melhora acessibilidade e SEO -->
+<html lang="pt-br">
+
+<!-- ================================================
+     HEAD — Metadados (não visíveis na página)
+     ================================================ -->
+<head>
+    <!-- Codificação UTF-8: suporta acentos e caracteres especiais -->
+    <meta charset="UTF-8">
+
+    <!-- Viewport: garante responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título exibido na aba do navegador e nos resultados do Google -->
+    <title>TechBlog — Tecnologia e Inovação</title>
+
+    <!-- Descrição para SEO (aparece nos resultados de busca) -->
+    <meta name="description" content="Blog sobre tecnologia, programação e inovação digital.">
+
+    <!-- Ícone da aba (favicon) -->
+    <link rel="icon" href="favicon.ico">
+
+    <!-- CSS externo: separação de responsabilidades (estrutura ≠ estilo) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- ================================================
+     BODY — Todo conteúdo visível começa aqui
+     ================================================ -->
+<body>
+
+    <!-- ============================================
+         HEADER — Cabeçalho da página
+         Contém a identidade (logo/nome) e a navegação.
+         ============================================ -->
+    <header>
+        <!-- h1: título principal, só UM por página -->
+        <h1>TechBlog</h1>
+
+        <!-- Parágrafo com slogan ou descrição curta -->
+        <p>Explorando o futuro da tecnologia</p>
+
+        <!-- NAV — Bloco de navegação principal
+             Semântico: indica que este é um MENU de links.
+             Construído com lista (ul > li > a) por boas práticas. -->
+        <nav>
+            <ul>
+                <!-- Cada item do menu é um li contendo um link (a) -->
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#destaques">Destaques</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         MAIN — Conteúdo principal da página
+         Use APENAS UM <main> por documento.
+         Tudo que é o "propósito" da página vai aqui.
+         ============================================ -->
+    <main>
+
+        <!-- SECTION: Introdução / Banner
+             Cada seção agrupa conteúdo com um tema comum.
+             O id permite que o menu navegue até aqui (#inicio). -->
+        <section id="inicio">
+            <h2>Bem-vindos ao TechBlog</h2>
+            <p>
+                Aqui você encontra artigos sobre <strong>desenvolvimento web</strong>,
+                <em>inteligência artificial</em> e as últimas tendências do
+                mercado de tecnologia.
+            </p>
+
+            <!-- Imagem com legenda usando figure + figcaption -->
+            <figure>
+                <img src="banner-tech.jpg"
+                     alt="Pessoa programando em notebook com código na tela"
+                     width="800">
+                <figcaption>O futuro é construído com código.</figcaption>
+            </figure>
+        </section>
+
+        <!-- SECTION: Destaques
+             Contém ARTICLES — cada artigo é independente,
+             poderia existir sozinho fora desta página. -->
+        <section id="destaques">
+            <h2>Artigos em Destaque</h2>
+
+            <!-- ARTICLE 1: conteúdo autocontido -->
+            <article>
+                <h3>O Impacto da IA Generativa em 2026</h3>
+                <p>
+                    A inteligência artificial generativa transformou a forma como
+                    criamos conteúdo, código e design. Neste artigo, analisamos
+                    os principais avanços do último ano.
+                </p>
+                <a href="artigo-ia.html">Leia mais →</a>
+            </article>
+
+            <!-- ARTICLE 2 -->
+            <article>
+                <h3>HTML5 e CSS3: Guia Completo para Iniciantes</h3>
+                <p>
+                    Tudo que você precisa saber para começar a construir
+                    páginas web modernas, semânticas e responsivas.
+                </p>
+                <a href="artigo-html-css.html">Leia mais →</a>
+            </article>
+
+            <!-- ARTICLE 3 -->
+            <article>
+                <h3>5 Ferramentas que Todo Desenvolvedor Precisa Conhecer</h3>
+                <!-- Lista ordenada: porque a ordem importa (ranking) -->
+                <ol>
+                    <li>VS Code — Editor de código</li>
+                    <li>Git — Controle de versão</li>
+                    <li>DevTools — Inspetor do navegador</li>
+                    <li>Figma — Prototipação</li>
+                    <li>ChatGPT / Claude — Assistentes IA</li>
+                </ol>
+                <a href="artigo-ferramentas.html">Leia mais →</a>
+            </article>
+        </section>
+
+        <!-- SECTION: Sobre -->
+        <section id="sobre">
+            <h2>Sobre o TechBlog</h2>
+            <p>
+                O TechBlog nasceu em <strong>2026</strong> com a missão de
+                democratizar o conhecimento sobre tecnologia e programação.
+                Somos uma equipe de desenvolvedores apaixonados por compartilhar
+                o que sabemos.
+            </p>
+
+            <!-- Tabela com dados da equipe -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Membro</th>
+                        <th>Área</th>
+                        <th>Experiência</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana Costa</td>
+                        <td>Front-End</td>
+                        <td>5 anos</td>
+                    </tr>
+                    <tr>
+                        <td>Carlos Lima</td>
+                        <td>Back-End</td>
+                        <td>7 anos</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION: Contato -->
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <p>Tem sugestões ou quer contribuir? Fale conosco:</p>
+
+            <!-- Lista com informações de contato -->
+            <ul>
+                <li>
+                    E-mail: 
+                    <a href="mailto:contato@techblog.com">contato@techblog.com</a>
+                </li>
+                <li>
+                    GitHub: 
+                    <a href="https://github.com/techblog" target="_blank">github.com/techblog</a>
+                </li>
+                <li>
+                    Tel: 
+                    <a href="tel:+5511999999999">(11) 99999-9999</a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER — Rodapé
+         Informações institucionais, copyright, links secundários.
+         ============================================ -->
+    <footer>
+        <p>
+            &copy; 2026 TechBlog — Disciplina de Front-End
+        </p>
+        <p>
+            <small>Desenvolvido como atividade prática de HTML5.</small>
+        </p>
+    </footer>
+
+</body>
+</html>
