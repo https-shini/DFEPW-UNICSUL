@@ -1,0 +1,588 @@
+/* ==========================================================================
+   PROJETO 4 — LANDING PAGE COMPLETA (Desafio bônus)
+   Conceitos: TODOS da aula — seletores, box model, cores, tipografia,
+   Flexbox, media queries, bordas, sombras e transições.
+   Cores, reset, barra de projetos e rodapé vêm de ../compartilhado/base.css
+   ========================================================================== */
+
+:root {
+    --altura-header: 4rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* âncora não fica escondida atrás da barra + header fixo */
+    scroll-padding-top: calc(var(--altura-barra) + var(--altura-header));
+}
+
+body {
+    font-size: 1.0625rem;
+}
+
+/* ══════════════════════════════════
+   3. LAYOUT BASE
+   ══════════════════════════════════ */
+.container {
+    max-width: 70rem;            /* limita no desktop */
+    margin: 0 auto;              /* centraliza */
+    padding: 0 1.5rem;           /* respiro lateral */
+}
+
+.secao {
+    padding: 5rem 0;
+}
+
+.secao-clara {
+    background-color: var(--cor-superficie);
+}
+
+.secao-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--cor-titulo);
+    margin-bottom: 0.5rem;
+}
+
+.secao-sub {
+    color: var(--cor-texto-suave);
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+}
+
+
+/* ══════════════════════════════════
+   4. BOTÕES — transition + transform
+   ══════════════════════════════════ */
+.botao {
+    display: inline-block;
+    padding: 0.8rem 1.75rem;
+    border: 2px solid transparent;
+    border-radius: 2rem;         /* formato "pílula" */
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transicao),
+                border-color var(--transicao),
+                transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.botao:active {
+    transform: translateY(0);
+}
+
+.botao-primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-botao);
+}
+
+.botao-primario:hover {
+    background-color: var(--cor-primaria-escura);
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-botao);
+}
+
+.botao-contorno {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+.botao-contorno:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+
+/* ══════════════════════════════════
+   5. HEADER FIXO + MENU
+   ══════════════════════════════════ */
+.cabecalho {
+    position: fixed;
+    top: var(--altura-barra);        /* logo abaixo da barra de projetos */
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--cor-escura-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow var(--transicao);
+}
+
+.cabecalho.cabecalho-rolou {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.cabecalho-conteudo {
+    max-width: 70rem;
+    height: var(--altura-header);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+
+    /* Logo à esquerda, menu à direita */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--fonte-titulo);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Marca circular: border-radius 50% */
+.logo-marca {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #f5c542;
+    color: #0d0d0f;
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    margin-left: auto;           /* empurra menu e botões para a direita */
+    margin-right: 0.75rem;
+}
+
+.menu-lista {
+    list-style: none;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.menu-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transicao), background-color var(--transicao);
+}
+
+.menu-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-link.menu-link-ativo {
+    color: #fff;
+    box-shadow: inset 0 -2px 0 #d62839;
+}
+
+/* Hambúrguer: escondido no desktop */
+.menu-botao {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: none;
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.menu-botao-linha {
+    width: 1.5rem;
+    height: 2px;
+    background-color: #fff;
+    transition: transform var(--transicao), opacity var(--transicao);
+}
+
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(1) {
+    transform: translateY(0.45rem) rotate(45deg);
+}
+
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(3) {
+    transform: translateY(-0.45rem) rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════
+   6. HERO
+   ══════════════════════════════════ */
+.hero {
+    background: linear-gradient(135deg, var(--cor-escura), var(--cor-escura-2));
+    border-bottom: 3px solid #d62839;   /* listra carmim */
+    color: #fff;
+    padding: calc(var(--altura-header) + 5rem) 0 4rem;   /* compensa o header fixo */
+}
+
+
+.hero-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 3.75rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    max-width: 18ch;
+    margin-bottom: 1.5rem;
+}
+
+.hero-texto {
+    font-size: 1.2rem;
+    max-width: 36rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+.hero-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.processo {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.processo-etapa {
+    flex: 1 1 14rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.processo-numero {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 2px solid #f5c542;
+    color: #f5c542;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.processo-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.processo-texto {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* ══════════════════════════════════
+   7. SERVIÇOS — cards com flex-wrap
+   ══════════════════════════════════ */
+.servicos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.servico {
+    flex: 1 1 250px;             /* cresce, encolhe, mínimo 250px */
+    background-color: var(--cor-superficie);
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--cor-borda);
+    border-top: 4px solid var(--cor-primaria);
+    border-radius: var(--raio);
+    transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.servico:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-card);
+}
+
+.servico-icone {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 1rem;
+    fill: none;
+    stroke: var(--cor-link);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.servico-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor-titulo);
+    margin-bottom: 0.4rem;
+}
+
+.servico-texto {
+    color: var(--cor-texto-suave);
+    font-size: 0.975rem;
+}
+
+
+/* ══════════════════════════════════
+   8. TABELA DE PLANOS
+   ══════════════════════════════════ */
+.tabela-wrapper {
+    overflow-x: auto;            /* rola na horizontal se não couber */
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-leve);
+}
+
+.tabela {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    background-color: var(--cor-superficie);
+}
+
+.tabela th,
+.tabela td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.tabela thead th {
+    background-color: var(--cor-escura);
+    color: #fff;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+}
+
+.tabela tbody th {
+    font-weight: 600;
+    color: var(--cor-titulo);
+}
+
+.tabela tbody tr:hover th,
+.tabela tbody tr:hover td {
+    background-color: var(--cor-linha-hover);   /* destaque leve no hover */
+}
+
+/* Coluna em destaque.
+   CORREÇÃO do material: ".destaque" sozinho (classe) vencia "th" (tag)
+   e deixava texto branco sobre fundo claro no cabeçalho. */
+.tabela td.coluna-destaque,
+.tabela tbody tr:hover td.coluna-destaque {
+    background-color: var(--cor-coluna-destaque);
+    font-weight: 600;
+}
+
+.tabela thead th.coluna-destaque {
+    background-color: var(--cor-primaria);
+}
+
+.linha-preco th,
+.linha-preco td {
+    border-bottom: none;
+}
+
+.preco {
+    font-family: var(--fonte-titulo);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--cor-titulo);
+}
+
+.preco-periodo {
+    font-size: 0.85rem;
+    color: var(--cor-texto-suave);
+    margin-left: 0.2rem;
+}
+
+
+/* ══════════════════════════════════
+   9. CONTATO
+   ══════════════════════════════════ */
+.contatos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.contato {
+    flex: 1 1 250px;
+    padding: 1.5rem;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    color: var(--cor-texto);
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.contato:hover {
+    border-color: var(--cor-link);
+    box-shadow: var(--sombra-leve);
+}
+
+.contato-icone {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: 0.5rem;
+    fill: none;
+    stroke: var(--cor-link);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.contato-rotulo {
+    font-size: 0.9rem;
+    color: var(--cor-texto-suave);
+}
+
+.contato-valor {
+    font-family: var(--fonte-titulo);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cor-link);
+    overflow-wrap: anywhere;     /* e-mail longo não estoura no celular */
+}
+
+
+/* ══════════════════════════════════
+   10. TABLET
+   ══════════════════════════════════ */
+@media (max-width: 1024px) {
+    .hero-titulo {
+        font-size: 3rem;
+    }
+}
+
+
+/* ══════════════════════════════════
+   11. CELULAR — até 768px
+   ══════════════════════════════════ */
+@media (max-width: 768px) {
+
+    .menu-botao {
+        display: flex;
+    }
+
+    /* Menu vira painel vertical abaixo do header */
+    .menu {
+        position: absolute;
+        margin: 0;               /* remove a margem usada no desktop */
+        top: var(--altura-header);
+        left: 0;
+        right: 0;
+        background-color: var(--cor-escura-2);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .menu-lista {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.5rem 1rem;
+    }
+
+    .menu-link {
+        padding: 0.9rem 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .menu-lista li:last-child .menu-link {
+        border-bottom: none;
+    }
+
+    .menu-link.menu-link-ativo {
+        box-shadow: none;
+        color: #f5c542;
+    }
+
+    /* Com JS o painel começa fechado; sem JS continua visível */
+    .js .menu {
+        display: none;
+    }
+
+    .js .menu.menu-aberto {
+        display: block;
+    }
+
+    .hero {
+        padding-top: calc(var(--altura-header) + 3rem);
+    }
+
+    .hero-titulo {
+        font-size: 2.3rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-texto {
+        font-size: 1.05rem;
+    }
+
+    .hero-acoes .botao {
+        flex: 1 1 100%;          /* botões ocupam a largura toda */
+        text-align: center;
+    }
+
+    .secao {
+        padding: 3.5rem 0;
+    }
+
+    .secao-titulo {
+        font-size: 1.75rem;
+    }
+
+
+    /* SEM JS: sem botão para abrir/fechar, o menu fica sempre aberto.
+       O header deixa de ser fixo para o menu não cobrir o conteúdo. */
+    html:not(.js) .cabecalho {
+        position: relative;
+        top: 0;
+    }
+
+    html:not(.js) .cabecalho-conteudo {
+        height: auto;
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    html:not(.js) .menu {
+        position: static;
+        align-self: stretch;
+        box-shadow: none;
+    }
+
+    html:not(.js) .hero {
+        padding-top: 3rem;
+    }
+}
+

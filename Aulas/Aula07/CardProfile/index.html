@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- Obrigatório para o responsivo funcionar no celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Projeto 1 — Card de Perfil</title>
+
+    <!-- Fontes (fallback definido no CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS: base comum a todos os projetos + estilo deste projeto -->
+    <link rel="stylesheet" href="../compartilhado/base.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript: todo o código fica nos arquivos .js
+         tema.js roda antes da página aparecer (evita "piscar" o tema errado) -->
+    <script src="../compartilhado/tema.js"></script>
+</head>
+<body>
+
+    <!-- ══════════ BARRA DE PROJETOS (comum a todos) ══════════ -->
+    <div class="barra-projetos">
+        <div class="barra-conteudo">
+            <span class="barra-marca">
+                <span class="barra-marca-icone" aria-hidden="true"></span>
+                <span class="barra-marca-texto">Aula 07</span>
+            </span>
+
+            <nav class="barra-nav" aria-label="Projetos da Aula 07">
+                <ul class="barra-lista">
+                <li><a class="barra-link" href="../CardProfile/index.html" aria-current="page"><span class="rotulo-longo">Card de Perfil</span><span class="rotulo-curto">Perfil</span></a></li>
+                <li><a class="barra-link" href="../NavResponsivo/index.html"><span class="rotulo-longo">Menu Responsivo</span><span class="rotulo-curto">Menu</span></a></li>
+                <li><a class="barra-link" href="../Galeria/index.html"><span class="rotulo-longo">Galeria de Imagens</span><span class="rotulo-curto">Galeria</span></a></li>
+                <li><a class="barra-link" href="../LandingPage/index.html"><span class="rotulo-longo">Landing Page</span><span class="rotulo-curto">Landing</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Página: Flexbox centraliza o card no espaço disponível -->
+    <main class="pagina">
+        <article class="card">
+
+            <!-- Foto circular (border-radius: 50%).
+                 <img> com alt no lugar de background-image, para leitores de tela. -->
+            <img class="foto" src="./Icon.jpg" alt="Foto de perfil de Ana Costa" width="120" height="120">
+
+            <!-- Dados textuais -->
+            <h1 class="nome">Shadow the Hedgehog</h1>
+            <p class="cargo">The Ultimate Lifeform</p>
+
+            <!-- Estatísticas em linha (Flexbox) -->
+            <ul class="info">
+                <li class="info-item">
+                    <strong class="info-numero">47</strong>
+                    <span class="info-label">Projetos</span>
+                </li>
+                <li class="info-item">
+                    <strong class="info-numero">1.2k</strong>
+                    <span class="info-label">Seguidores</span>
+                </li>
+                <li class="info-item">
+                    <strong class="info-numero">98%</strong>
+                    <span class="info-label">Avaliação</span>
+                </li>
+            </ul>
+
+            <!-- Botão com hover animado (transition) -->
+            <a href="https://gcruz.dev.br/" class="botao">Ver Perfil</a>
+        </article>
+    </main>
+
+    <!-- ══════════ RODAPÉ COM A AUTORIA (comum a todos) ══════════ -->
+    <footer class="rodape-autor">
+        <p>Projeto desenvolvido por <a class="rodape-autor-nome" href="https://gcruz.dev.br/"><span class="rodape-autor-nome">Guilherme de Souza Cruz</span></a></p>
+        <p class="rodape-autor-disciplina">Aula 07 — CSS3 | Desenvolvimento Front-End para Web | Prof. Marcos Venícios Araújo</p>
+    </footer>
+
+</body>
+</html>

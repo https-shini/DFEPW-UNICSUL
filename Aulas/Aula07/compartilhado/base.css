@@ -1,0 +1,340 @@
+/* ==========================================================================
+   BASE COMPARTILHADA — Aula 07 (CSS3)
+   Usada pelos 4 projetos: paleta, reset, barra de projetos e rodapé.
+   Cada projeto tem seu próprio style.css só com o que é dele.
+   ========================================================================== */
+
+
+/* ══════════════════════════════════
+   1. PALETA — inspirada no Shadow the Hedgehog
+      preto (pelo), vermelho carmim (listras), dourado (anéis)
+   ══════════════════════════════════ */
+
+/* Tema claro (padrão) */
+:root {
+    --cor-fundo: #eeedf0;
+    --cor-superficie: #ffffff;
+    --cor-escura: #0d0d0f;           /* barras, headers e rodapé */
+    --cor-escura-2: #1f0a0f;         /* preto avermelhado para gradientes */
+    --cor-primaria: #c8102e;         /* carmim: botões e detalhes */
+    --cor-primaria-escura: #9e0c24;
+    --cor-destaque: #e0a800;         /* dourado: foco e detalhes */
+    --cor-titulo: #16161a;
+    --cor-texto: #4e4b52;
+    --cor-texto-suave: #625e67;
+    --cor-borda: #e2dfe4;
+    --cor-link: #b00d28;             /* carmim legível sobre fundo claro */
+    --cor-texto-botao: #ffffff;
+    --cor-linha-hover: #f7f3f4;
+    --cor-coluna-destaque: #fbe9ec;
+    --sombra-leve: 0 2px 8px rgba(22, 22, 26, 0.06);
+    --sombra-card: 0 12px 32px rgba(22, 22, 26, 0.12);
+    --sombra-botao: 0 6px 16px rgba(200, 16, 46, 0.35);
+
+    --fonte-titulo: 'Bricolage Grotesque', 'Segoe UI', Arial, sans-serif;
+    --fonte-texto: 'Manrope', 'Segoe UI', Arial, sans-serif;
+
+    --altura-barra: 3.25rem;
+    --raio: 0.75rem;
+    --transicao: 0.3s ease;
+
+    color-scheme: light;
+}
+
+/* Tema escuro.
+   Aparece em dois casos, por isso o bloco se repete:
+   1) navegador no modo escuro e o usuário não escolheu "claro" no botão;
+   2) usuário escolheu "escuro" no botão (atributo data-tema no <html>). */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-tema="claro"]) {
+        --cor-fundo: #0d0d0f;
+        --cor-superficie: #19181c;
+        --cor-escura: #050506;
+        --cor-escura-2: #1a070c;
+        --cor-primaria: #d62839;
+        --cor-primaria-escura: #b01d2e;
+        --cor-destaque: #f5c542;
+        --cor-titulo: #f5f3f5;
+        --cor-texto: #b3adb8;
+        --cor-texto-suave: #9a94a0;
+        --cor-borda: #2c2a30;
+        --cor-link: #ff7a8a;
+        --cor-texto-botao: #ffffff;
+        --cor-linha-hover: #211f25;
+        --cor-coluna-destaque: #2a1418;
+        --sombra-leve: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --sombra-card: 0 12px 32px rgba(0, 0, 0, 0.5);
+        --sombra-botao: 0 6px 16px rgba(214, 40, 57, 0.35);
+
+        color-scheme: dark;
+    }
+}
+
+:root[data-tema="escuro"] {
+    --cor-fundo: #0d0d0f;
+    --cor-superficie: #19181c;
+    --cor-escura: #050506;
+    --cor-escura-2: #1a070c;
+    --cor-primaria: #d62839;
+    --cor-primaria-escura: #b01d2e;
+    --cor-destaque: #f5c542;
+    --cor-titulo: #f5f3f5;
+    --cor-texto: #b3adb8;
+    --cor-texto-suave: #9a94a0;
+    --cor-borda: #2c2a30;
+    --cor-link: #ff7a8a;
+    --cor-texto-botao: #ffffff;
+    --cor-linha-hover: #211f25;
+    --cor-coluna-destaque: #2a1418;
+    --sombra-leve: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --sombra-card: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --sombra-botao: 0 6px 16px rgba(214, 40, 57, 0.35);
+
+    color-scheme: dark;
+}
+
+
+/* ══════════════════════════════════
+   2. RESET E BASE
+   ══════════════════════════════════ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;          /* width inclui padding e border */
+}
+
+body {
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    transition: background-color var(--transicao), color var(--transicao);
+}
+
+img {
+    max-width: 100%;                 /* imagem nunca ultrapassa o container */
+    display: block;
+}
+
+button {
+    font: inherit;
+}
+
+/* Foco visível para navegação por teclado */
+:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+/* Texto lido apenas por leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+
+/* ══════════════════════════════════
+   3. BARRA DE PROJETOS — igual em todas as páginas.
+   position: sticky mantém a barra no topo ao rolar.
+   ══════════════════════════════════ */
+.barra-projetos {
+    position: sticky;
+    top: 0;
+    z-index: 300;                    /* acima dos headers dos projetos */
+    height: var(--altura-barra);
+    background-color: var(--cor-escura);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.barra-conteudo {
+    max-width: 72rem;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.barra-marca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+}
+
+/* Pequeno losango carmim com contorno dourado */
+.barra-marca-icone {
+    width: 0.7rem;
+    height: 0.7rem;
+    background-color: #d62839;
+    border: 2px solid #f5c542;
+    transform: rotate(45deg);
+}
+
+.barra-nav {
+    margin-left: auto;               /* empurra os links para a direita */
+    min-width: 0;                    /* permite a rolagem horizontal abaixo */
+}
+
+.barra-lista {
+    list-style: none;
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;                /* no celular, rola para o lado se faltar espaço */
+    scrollbar-width: none;
+}
+
+.barra-lista::-webkit-scrollbar {
+    display: none;
+}
+
+.barra-link {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--transicao), background-color var(--transicao);
+}
+
+.barra-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Projeto aberto no momento */
+.barra-link[aria-current="page"] {
+    color: #fff;
+    box-shadow: inset 0 -2px 0 #d62839;
+}
+
+.rotulo-curto {
+    display: none;
+}
+
+
+/* ══════════════════════════════════
+   4. BOTÃO DE TEMA — lua (ativar escuro) / sol (ativar claro)
+   ══════════════════════════════════ */
+.tema-botao {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color var(--transicao), border-color var(--transicao);
+}
+
+.tema-botao:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #f5c542;
+}
+
+.tema-icone {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Claro: mostra a lua */
+.tema-icone-sol {
+    display: none;
+}
+
+/* Escuro: mostra o sol (mesmas duas situações do tema escuro) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-tema="claro"]) .tema-icone-lua { display: none; }
+    :root:not([data-tema="claro"]) .tema-icone-sol { display: block; }
+}
+
+:root[data-tema="escuro"] .tema-icone-lua { display: none; }
+:root[data-tema="escuro"] .tema-icone-sol { display: block; }
+
+
+/* ══════════════════════════════════
+   5. RODAPÉ COM A AUTORIA — igual em todas as páginas
+   ══════════════════════════════════ */
+.rodape-autor {
+    padding: 1.75rem 1rem;
+    background-color: var(--cor-escura);
+    border-top: 3px solid #d62839;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.rodape-autor-nome {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.rodape-autor-disciplina {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ══════════════════════════════════
+   6. RESPONSIVO DA BARRA
+   ══════════════════════════════════ */
+@media (max-width: 640px) {
+    .rotulo-longo {
+        display: none;
+    }
+
+    .rotulo-curto {
+        display: inline;
+    }
+
+    .barra-link {
+        padding: 0.4rem 0.55rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .barra-marca-texto {
+        display: none;               /* fica só o losango */
+    }
+}
+
+
+/* Respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition-duration: 0.01ms !important;
+    }
+}

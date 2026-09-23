@@ -1,0 +1,383 @@
+/* ==========================================================================
+   PROJETO 2 — MENU DE NAVEGAÇÃO RESPONSIVO
+   Conceitos: Flexbox (row/column), @media, :hover, transition, list-style.
+   Cores, reset, barra de projetos e rodapé vêm de ../compartilhado/base.css
+   ========================================================================== */
+
+:root {
+    --altura-header: 4rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* âncora não fica escondida atrás da barra + header fixo */
+    scroll-padding-top: calc(var(--altura-barra) + var(--altura-header));
+}
+
+body {
+    line-height: 1.7;
+}
+
+
+/* ══════════════════════════════════
+   HEADER FIXO — logo abaixo da barra de projetos
+   ══════════════════════════════════ */
+.cabecalho {
+    position: fixed;                 /* fixa no topo */
+    top: var(--altura-barra);        /* começa onde a barra de projetos termina */
+    left: 0;
+    right: 0;                        /* estica de ponta a ponta */
+    z-index: 100;
+    background-color: var(--cor-escura-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow var(--transicao);
+}
+
+/* Sombra ao rolar (classe colocada pelo JS) */
+.cabecalho.cabecalho-rolou {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cabecalho-conteudo {
+    max-width: 64rem;
+    height: var(--altura-header);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+
+    /* FLEXBOX: logo à esquerda, menu à direita */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo-destaque {
+    color: #f5c542;                  /* dourado */
+}
+
+
+/* ══════════════════════════════════
+   MENU — lista horizontal (desktop)
+   ══════════════════════════════════ */
+.menu-lista {
+    list-style: none;                /* remove os bullets */
+    display: flex;                   /* itens lado a lado */
+    gap: 0.25rem;
+}
+
+.menu-link {
+    display: block;                  /* área clicável ocupa o <li> inteiro */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transicao), background-color var(--transicao);
+}
+
+.menu-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-link:active {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Link da seção atual: barra carmim embaixo */
+.menu-link.menu-link-ativo {
+    color: #fff;
+    box-shadow: inset 0 -3px 0 #d62839;
+}
+
+
+/* ══════════════════════════════════
+   BOTÃO HAMBÚRGUER — escondido no desktop
+   ══════════════════════════════════ */
+.menu-botao {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: none;
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.menu-botao-linha {
+    width: 1.5rem;
+    height: 2px;
+    background-color: #fff;
+    transition: transform var(--transicao), opacity var(--transicao);
+}
+
+/* Vira um "X" quando o menu está aberto */
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(1) {
+    transform: translateY(0.45rem) rotate(45deg);
+}
+
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-botao[aria-expanded="true"] .menu-botao-linha:nth-child(3) {
+    transform: translateY(-0.45rem) rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════
+   CONTEÚDO
+   ══════════════════════════════════ */
+.container {
+    max-width: 64rem;                /* limita no desktop */
+    margin: 0 auto;                  /* centraliza */
+    padding: 0 1.5rem;               /* respiro lateral */
+}
+
+.secao {
+    padding: 4.5rem 0;
+}
+
+/* Primeira seção compensa a altura do header fixo */
+.secao-inicio {
+    padding-top: calc(var(--altura-header) + 5rem);
+    padding-bottom: 5rem;
+    background-color: var(--cor-superficie);
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.secao-clara {
+    background-color: var(--cor-superficie);
+}
+
+.titulo-principal {
+    font-family: var(--fonte-titulo);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--cor-titulo);
+    max-width: 20ch;
+    margin-bottom: 1rem;
+}
+
+.texto-grande {
+    font-size: 1.15rem;
+    max-width: 38rem;
+    margin-bottom: 2rem;
+}
+
+.secao-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--cor-titulo);
+    margin-bottom: 1.5rem;
+}
+
+.texto {
+    max-width: 42rem;
+    margin-bottom: 1rem;
+}
+
+code {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.3rem;
+    background-color: var(--cor-fundo);
+    color: var(--cor-link);
+}
+
+
+/* ══════════════════════════════════
+   BOTÃO
+   ══════════════════════════════════ */
+.botao {
+    display: inline-block;
+    padding: 0.8rem 1.75rem;
+    border-radius: 2rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-botao);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color var(--transicao),
+                transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.botao:hover {
+    background-color: var(--cor-primaria-escura);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-botao);
+}
+
+.botao:active {
+    transform: translateY(0);
+}
+
+
+/* ══════════════════════════════════
+   ARTIGOS — cards com flex-wrap
+   ══════════════════════════════════ */
+.artigos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.artigo {
+    flex: 1 1 16rem;                 /* cresce, encolhe, mínimo 16rem */
+    padding: 1.5rem;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-left: 4px solid var(--cor-primaria);   /* listra carmim */
+    border-radius: var(--raio);
+}
+
+.artigo-tag {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.15rem 0.7rem;
+    border-radius: 2rem;
+    background-color: var(--cor-fundo);
+    color: var(--cor-link);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.artigo-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--cor-titulo);
+    margin-bottom: 0.5rem;
+}
+
+.artigo-texto {
+    font-size: 0.95rem;
+}
+
+
+/* ══════════════════════════════════
+   TABLET
+   ══════════════════════════════════ */
+@media (max-width: 1024px) {
+    .titulo-principal {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* ══════════════════════════════════
+   CELULAR — menu vira VERTICAL (requisito do projeto)
+   ══════════════════════════════════ */
+@media (max-width: 768px) {
+
+    .menu-botao {
+        display: flex;
+    }
+
+    /* O menu vira um painel logo abaixo do header */
+    .menu {
+        position: absolute;
+        top: var(--altura-header);
+        left: 0;
+        right: 0;
+        background-color: var(--cor-escura-2);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-lista {
+        flex-direction: column;      /* itens empilhados */
+        gap: 0;
+        padding: 0.5rem 1.5rem 1rem;
+    }
+
+    .menu-link {
+        padding: 0.9rem 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .menu-lista li:last-child .menu-link {
+        border-bottom: none;
+    }
+
+    .menu-link.menu-link-ativo {
+        box-shadow: none;
+        color: #f5c542;
+    }
+
+    /* Com JS, o painel começa fechado e abre pelo botão.
+       Sem JS, o menu continua visível (ninguém fica sem navegação). */
+    .js .menu {
+        display: none;
+    }
+
+    .js .menu.menu-aberto {
+        display: block;
+    }
+
+    .secao {
+        padding: 3rem 0;
+    }
+
+    .secao-inicio {
+        padding-top: calc(var(--altura-header) + 3rem);
+        padding-bottom: 3rem;
+    }
+
+    .titulo-principal {
+        font-size: 2rem;
+    }
+
+    .texto-grande {
+        font-size: 1.05rem;
+    }
+
+    .secao-titulo {
+        font-size: 1.5rem;
+    }
+
+    /* SEM JS: sem botão para abrir/fechar, o menu fica sempre aberto.
+       O header deixa de ser fixo para o menu não cobrir o conteúdo. */
+    html:not(.js) .cabecalho {
+        position: relative;
+        top: 0;
+    }
+
+    html:not(.js) .cabecalho-conteudo {
+        height: auto;
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    html:not(.js) .menu {
+        position: static;
+        align-self: stretch;
+        box-shadow: none;
+    }
+
+    html:not(.js) .secao-inicio {
+        padding-top: 3rem;
+    }
+}

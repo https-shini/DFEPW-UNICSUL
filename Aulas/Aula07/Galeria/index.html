@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- Obrigatório para o responsivo funcionar no celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Projeto 3 — Galeria de Imagens</title>
+
+    <!-- Fontes (fallback definido no CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS: base comum a todos os projetos + estilo deste projeto -->
+    <link rel="stylesheet" href="../compartilhado/base.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript: todo o código fica nos arquivos .js
+         tema.js roda antes da página aparecer (evita "piscar" o tema errado) -->
+    <script src="../compartilhado/tema.js"></script>
+</head>
+<body>
+
+    <!-- ══════════ BARRA DE PROJETOS (comum a todos) ══════════ -->
+    <div class="barra-projetos">
+        <div class="barra-conteudo">
+            <span class="barra-marca">
+                <span class="barra-marca-icone" aria-hidden="true"></span>
+                <span class="barra-marca-texto">Aula 07</span>
+            </span>
+
+            <nav class="barra-nav" aria-label="Projetos da Aula 07">
+                <ul class="barra-lista">
+                <li><a class="barra-link" href="../CardProfile/index.html"><span class="rotulo-longo">Card de Perfil</span><span class="rotulo-curto">Perfil</span></a></li>
+                <li><a class="barra-link" href="../NavResponsivo/index.html"><span class="rotulo-longo">Menu Responsivo</span><span class="rotulo-curto">Menu</span></a></li>
+                <li><a class="barra-link" href="../Galeria/index.html" aria-current="page"><span class="rotulo-longo">Galeria de Imagens</span><span class="rotulo-curto">Galeria</span></a></li>
+                <li><a class="barra-link" href="../LandingPage/index.html"><span class="rotulo-longo">Landing Page</span><span class="rotulo-curto">Landing</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main class="pagina">
+        <header class="cabecalho">
+            <h1 class="titulo">Galeria de Fotos</h1>
+            <p class="subtitulo">Passe o mouse sobre as imagens para ver o efeito</p>
+        </header>
+
+        <!-- Cada item: imagem + legenda (overlay).
+             <figure>/<figcaption> ligam a legenda à imagem semanticamente. -->
+        <section class="galeria" aria-label="Galeria de paisagens">
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=1" alt="Paisagem 1: montanhas" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Montanhas</h2>
+                    <p class="overlay-texto">Paisagem natural</p>
+                </figcaption>
+            </figure>
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=2" alt="Paisagem 2: floresta" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Floresta</h2>
+                    <p class="overlay-texto">Natureza selvagem</p>
+                </figcaption>
+            </figure>
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=3" alt="Paisagem 3: oceano" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Oceano</h2>
+                    <p class="overlay-texto">Vista para o mar</p>
+                </figcaption>
+            </figure>
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=4" alt="Paisagem 4: cidade" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Cidade</h2>
+                    <p class="overlay-texto">Skyline urbano</p>
+                </figcaption>
+            </figure>
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=5" alt="Paisagem 5: deserto" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Deserto</h2>
+                    <p class="overlay-texto">Dunas douradas</p>
+                </figcaption>
+            </figure>
+
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/500/500?random=6" alt="Paisagem 6: aurora boreal" width="500" height="500" loading="lazy">
+                <figcaption class="overlay">
+                    <h2 class="overlay-titulo">Aurora</h2>
+                    <p class="overlay-texto">Luzes do norte</p>
+                </figcaption>
+            </figure>
+
+        </section>
+    </main>
+
+    <!-- ══════════ RODAPÉ COM A AUTORIA (comum a todos) ══════════ -->
+    <footer class="rodape-autor">
+        <p>Projeto desenvolvido por <a class="rodape-autor-nome" href="https://gcruz.dev.br/"><span class="rodape-autor-nome">Guilherme de Souza Cruz</span></a></p>
+        <p class="rodape-autor-disciplina">Aula 07 — CSS3 | Desenvolvimento Front-End para Web | Prof. Marcos Venícios Araújo</p>
+    </footer>
+
+</body>
+</html>

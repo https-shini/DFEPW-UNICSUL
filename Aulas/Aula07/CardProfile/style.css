@@ -1,0 +1,153 @@
+/* ==========================================================================
+   PROJETO 1 — CARD DE PERFIL
+   Conceitos: box model, border-radius (círculo), box-shadow,
+   Flexbox para centralizar, transition no botão.
+   Cores, reset, barra e rodapé vêm de ../compartilhado/base.css
+   ========================================================================== */
+
+
+/* ══════════════════════════════════
+   LAYOUT DA PÁGINA — barra, card centralizado e rodapé
+   ══════════════════════════════════ */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;          /* barra, conteúdo e rodapé empilhados */
+}
+
+.pagina {
+    flex: 1;                         /* ocupa o espaço entre barra e rodapé */
+    padding: 3rem 1.25rem;
+
+    /* FLEXBOX para centralizar vertical + horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ══════════════════════════════════
+   CARD — box model completo
+   ══════════════════════════════════ */
+.card {
+    width: 100%;
+    max-width: 22rem;                /* 320px no desktop, encolhe no celular */
+    padding: 2rem;                   /* respiro interno */
+    background-color: var(--cor-superficie);
+    border-radius: 1rem;             /* cantos arredondados */
+    border-top: 4px solid var(--cor-primaria);
+    text-align: center;
+    margin-bottom: 3rem;
+
+    /* SOMBRA: horizontal vertical blur cor */
+    box-shadow: var(--sombra-card);
+    transition: background-color var(--transicao), box-shadow var(--transicao);
+}
+
+
+/* ══════════════════════════════════
+   FOTO — círculo perfeito
+   ══════════════════════════════════ */
+.foto {
+    width: 7.5rem;
+    height: 7.5rem;
+    object-fit: cover;               /* preenche sem distorcer */
+    border-radius: 50%;              /* CÍRCULO! */
+    border: 4px solid var(--cor-primaria);
+    outline: 2px solid var(--cor-destaque);   /* anel dourado externo */
+    outline-offset: 3px;
+    margin: 0.5rem auto 1.25rem;     /* centraliza e adiciona espaço abaixo */
+    background-color: var(--cor-borda);       /* cor enquanto a imagem carrega */
+}
+
+
+/* ══════════════════════════════════
+   TEXTOS
+   ══════════════════════════════════ */
+.nome {
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--cor-titulo);
+    margin-bottom: 0.3rem;
+}
+
+.cargo {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+
+/* ══════════════════════════════════
+   INFORMAÇÕES — itens lado a lado (Flexbox)
+   ══════════════════════════════════ */
+.info {
+    list-style: none;                /* remove os bullets */
+    display: flex;
+    justify-content: space-around;   /* distribui igualmente */
+    gap: 0.5rem;
+    border-top: 1px solid var(--cor-borda);
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;          /* número em cima, rótulo embaixo */
+}
+
+.info-numero {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--cor-titulo);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;       /* TUDO MAIÚSCULO (como no modelo) */
+    letter-spacing: 1px;
+}
+
+
+/* ══════════════════════════════════
+   BOTÃO — transition para animação suave no hover
+   ══════════════════════════════════ */
+.botao {
+    display: inline-block;
+    padding: 0.65rem 2rem;
+    border-radius: 0.8rem;             /* formato "pílula" */
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-botao);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;           /* remove sublinhado (é um <a>) */
+    cursor: pointer;
+    transition: background-color var(--transicao),
+                transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.botao:hover {
+    background-color: var(--cor-primaria-escura);
+    transform: translateY(-2px);     /* sobe 2px */
+    box-shadow: var(--sombra-botao);
+}
+
+.botao:active {
+    transform: translateY(0);
+}
+
+/* ══════════════════════════════════
+   RESPONSIVO — celular
+   ══════════════════════════════════ */
+@media (max-width: 480px) {
+    .pagina {
+        padding: 2rem 1rem;
+    }
+
+    .card {
+        padding: 1.75rem 1.25rem;
+    }
+}

@@ -1,0 +1,1019 @@
+================================================================================
+  PROJETOS PRÁTICOS DE CSS3
+  Disciplina: Desenvolvimento Front-End para Web
+  Professor: Marcos Venícios Araújo — 2º Semestre 2026
+================================================================================
+
+  INSTRUÇÕES:
+  - Cada projeto é uma página HTML completa com CSS embutido.
+  - Copie o código de UM projeto, cole em um arquivo .html, salve e abra
+    no navegador.
+  - Leia TODOS os comentários — eles explicam cada propriedade CSS.
+  - Projetos 1-3 são obrigatórios. Projeto 4 é desafio bônus.
+  - Para testar responsividade: F12 → ícone de celular no DevTools.
+
+================================================================================
+  PROJETO 1 — CARD DE PERFIL (Básico)
+  Conceitos: Box model, border-radius, box-shadow, Flexbox (centralizar)
+================================================================================
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 1 — Card de Perfil</title>
+    <style>
+        /* ══════════════════════════════════
+           RESET — Remove estilos padrão do navegador.
+           Sempre comece com isso!
+           ══════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;  /* width inclui padding e border */
+        }
+
+        /* ══════════════════════════════════
+           BODY — Centraliza o card na tela
+           usando Flexbox.
+           ══════════════════════════════════ */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;         /* 100% da altura da janela */
+
+            /* FLEXBOX para centralizar vertical + horizontal */
+            display: flex;
+            justify-content: center;   /* centraliza horizontalmente */
+            align-items: center;       /* centraliza verticalmente */
+        }
+
+        /* ══════════════════════════════════
+           CARD — O container principal.
+           Demonstra: width, padding, border-radius,
+           box-shadow, text-align.
+           ══════════════════════════════════ */
+        .card {
+            background: white;
+            width: 320px;              /* largura fixa */
+            padding: 2rem;             /* respiro interno (32px) */
+            border-radius: 16px;       /* cantos arredondados */
+            text-align: center;        /* centraliza o conteúdo */
+
+            /* SOMBRA: horizontal vertical blur spread cor */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ══════════════════════════════════
+           FOTO DO PERFIL — Círculo perfeito.
+           border-radius: 50% transforma qualquer
+           elemento quadrado em um círculo.
+           ══════════════════════════════════ */
+        .foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;        /* CÍRCULO! */
+            margin: 0 auto 1rem;       /* centraliza e adiciona espaço abaixo */
+
+            /* Borda decorativa ao redor da foto */
+            border: 4px solid #3498db;
+
+            /* Imagem de exemplo (substituir pela sua) */
+            background-image: url('https://i.pravatar.cc/120');
+            background-size: cover;    /* preenche todo o espaço */
+            background-position: center;
+        }
+
+        /* ══════════════════════════════════
+           TEXTOS DO CARD
+           ══════════════════════════════════ */
+        .nome {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .cargo {
+            font-size: 0.9rem;
+            color: #7f8c8d;            /* cinza mais claro */
+            margin-bottom: 1.5rem;
+        }
+
+        /* ══════════════════════════════════
+           INFORMAÇÕES — Pequena lista de dados.
+           Usa border-top para separar visualmente.
+           ══════════════════════════════════ */
+        .info {
+            display: flex;             /* itens lado a lado */
+            justify-content: space-around; /* distribui igualmente */
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-numero {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            text-transform: uppercase;  /* TUDO MAIÚSCULO */
+            letter-spacing: 1px;
+        }
+
+        /* ══════════════════════════════════
+           BOTÃO — Demonstra transition para
+           animação suave no hover.
+           ══════════════════════════════════ */
+        .botao {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 32px;
+            border: none;
+            border-radius: 25px;       /* muito arredondado = "pílula" */
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;     /* remove sublinhado (é um <a>) */
+            cursor: pointer;
+
+            /* TRANSIÇÃO: anima todas as propriedades por 0.3s */
+            transition: all 0.3s ease;
+        }
+
+        /* Estado hover: quando o mouse passa por cima */
+        .botao:hover {
+            background-color: #2980b9; /* cor mais escura */
+            transform: translateY(-2px); /* sobe 2px */
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Foto circular -->
+        <div class="foto"></div>
+
+        <!-- Dados textuais -->
+        <div class="nome">Ana Costa</div>
+        <div class="cargo">Desenvolvedora Front-End</div>
+
+        <!-- Estatísticas em linha (Flexbox) -->
+        <div class="info">
+            <div class="info-item">
+                <div class="info-numero">47</div>
+                <div class="info-label">Projetos</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">1.2k</div>
+                <div class="info-label">Seguidores</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">98%</div>
+                <div class="info-label">Avaliação</div>
+            </div>
+        </div>
+
+        <!-- Botão com hover animado -->
+        <a href="#" class="botao">Ver Perfil</a>
+    </div>
+
+</body>
+</html>
+
+
+================================================================================
+  PROJETO 2 — MENU DE NAVEGAÇÃO RESPONSIVO (Básico)
+  Conceitos: Flexbox, media query, :hover, transições, list-style
+================================================================================
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 2 — Menu Responsivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* ══════════════════════════════════
+           HEADER — Barra de navegação fixa no topo.
+           position: fixed faz o header "flutuar"
+           sobre o conteúdo ao rolar a página.
+           ══════════════════════════════════ */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 0 2rem;
+            position: fixed;           /* fixa no topo */
+            top: 0;
+            left: 0;
+            right: 0;                  /* estica de ponta a ponta */
+            z-index: 100;              /* fica acima de tudo */
+
+            /* FLEXBOX: logo à esquerda, menu à direita */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        /* ══════════════════════════════════
+           LOGO
+           ══════════════════════════════════ */
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #3498db;            /* destaque na parte do nome */
+        }
+
+        /* ══════════════════════════════════
+           MENU — Lista horizontal com Flexbox.
+           list-style: none remove os bullets.
+           ══════════════════════════════════ */
+        nav ul {
+            list-style: none;          /* remove bullets */
+            display: flex;             /* itens lado a lado */
+            gap: 0;                    /* sem gap — usamos padding nos links */
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8); /* branco semitransparente */
+            text-decoration: none;           /* remove sublinhado */
+            padding: 20px 16px;              /* área clicável generosa */
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: block;                  /* ocupa todo o <li> */
+
+            /* Transição suave na cor e no fundo */
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        /* HOVER: ao passar o mouse */
+        nav a:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1); /* fundo translúcido */
+        }
+
+        /* Link ativo (página atual) */
+        nav a.ativo {
+            color: white;
+            border-bottom: 3px solid #3498db; /* barra azul embaixo */
+        }
+
+        /* ══════════════════════════════════
+           CONTEÚDO — Margem superior para
+           não ficar escondido atrás do header fixo.
+           ══════════════════════════════════ */
+        main {
+            margin-top: 80px;          /* header tem 60px + 20px de folga */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVO — Telas menores que 768px.
+           O menu muda de HORIZONTAL para VERTICAL.
+           ══════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* Header empilha logo e menu */
+            header {
+                flex-direction: column;  /* empilha vertical */
+                height: auto;            /* altura flexível */
+                padding: 1rem;
+            }
+
+            /* Menu vira coluna */
+            nav ul {
+                flex-direction: column;  /* itens empilhados */
+                width: 100%;
+                text-align: center;
+            }
+
+            nav a {
+                padding: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav a.ativo {
+                border-bottom: 1px solid #3498db;
+            }
+
+            /* Mais espaço no topo (header ficou maior) */
+            main {
+                margin-top: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Tech<span>Blog</span></div>
+        <nav>
+            <ul>
+                <li><a href="#" class="ativo">Início</a></li>
+                <li><a href="#">Artigos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Bem-vindo ao TechBlog</h2>
+            <p>Este é um exemplo de menu de navegação responsivo. Redimensione a janela do navegador ou use o DevTools (F12 → ícone de celular) para ver o menu se transformar de horizontal para vertical.</p>
+        </section>
+        <section>
+            <h2>Seção de Conteúdo</h2>
+            <p>Observe como o header fica fixo no topo enquanto você rola a página. Isso é feito com <code>position: fixed</code> no CSS.</p>
+        </section>
+        <section>
+            <h2>Outra Seção</h2>
+            <p>O efeito de hover nos links do menu usa <code>transition</code> para suavizar a mudança de cor. Sem transition, a mudança seria instantânea e brusca.</p>
+        </section>
+    </main>
+
+</body>
+</html>
+
+
+================================================================================
+  PROJETO 3 — GALERIA DE IMAGENS (Intermediário)
+  Conceitos: flex-wrap, hover, transform, opacity, transition, overflow
+================================================================================
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 3 — Galeria de Imagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;    /* fundo escuro para contraste */
+            color: white;
+            padding: 2rem;
+        }
+
+        /* ══════════════════════════════════
+           TÍTULO DA PÁGINA
+           ══════════════════════════════════ */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* ══════════════════════════════════
+           GALERIA — Grid flexível com flex-wrap.
+           Os itens se reorganizam automaticamente
+           conforme o tamanho da tela.
+           ══════════════════════════════════ */
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;           /* permite quebra de linha */
+            gap: 12px;                 /* espaço entre as imagens */
+            max-width: 1000px;
+            margin: 0 auto;           /* centraliza o container */
+        }
+
+        /* ══════════════════════════════════
+           ITEM DA GALERIA — Cada imagem.
+           flex: 1 1 250px significa:
+             1 = pode crescer
+             1 = pode encolher
+             250px = tamanho mínimo antes de quebrar linha
+           ══════════════════════════════════ */
+        .galeria-item {
+            flex: 1 1 250px;
+            height: 250px;
+            border-radius: 12px;
+
+            /* overflow: hidden impede que o zoom
+               da imagem "vaze" para fora do card */
+            overflow: hidden;
+
+            position: relative;        /* para posicionar o overlay */
+            cursor: pointer;
+        }
+
+        /* ══════════════════════════════════
+           IMAGEM — Preenche todo o card.
+           transition + transform criam o efeito
+           de zoom suave no hover.
+           ══════════════════════════════════ */
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;         /* preenche sem distorcer */
+            display: block;
+
+            /* Animação suave de 0.4 segundos */
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        /* HOVER: zoom + leve escurecimento */
+        .galeria-item:hover img {
+            transform: scale(1.08);    /* aumenta 8% */
+            opacity: 0.85;             /* leve escurecimento */
+        }
+
+        /* ══════════════════════════════════
+           OVERLAY — Texto que aparece no hover.
+           Fica invisível por padrão (opacity: 0)
+           e aparece suavemente no hover.
+           ══════════════════════════════════ */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+
+            /* Começa invisível */
+            opacity: 0;
+            transform: translateY(10px); /* deslocado para baixo */
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* No hover do item-pai, o overlay aparece */
+        .galeria-item:hover .overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay h3 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .overlay p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVO — Em telas pequenas, cada
+           imagem ocupa a largura toda.
+           ══════════════════════════════════ */
+        @media (max-width: 600px) {
+            .galeria-item {
+                flex: 1 1 100%;        /* uma imagem por linha */
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Galeria de Fotos</h1>
+    <p class="subtitulo">Passe o mouse sobre as imagens para ver o efeito</p>
+
+    <div class="galeria">
+
+        <!-- Cada item: imagem + overlay com texto -->
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=1" alt="Paisagem 1">
+            <div class="overlay">
+                <h3>Montanhas</h3>
+                <p>Paisagem natural</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=2" alt="Paisagem 2">
+            <div class="overlay">
+                <h3>Floresta</h3>
+                <p>Natureza selvagem</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=3" alt="Paisagem 3">
+            <div class="overlay">
+                <h3>Oceano</h3>
+                <p>Vista para o mar</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=4" alt="Paisagem 4">
+            <div class="overlay">
+                <h3>Cidade</h3>
+                <p>Skyline urbano</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=5" alt="Paisagem 5">
+            <div class="overlay">
+                <h3>Deserto</h3>
+                <p>Dunas douradas</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=6" alt="Paisagem 6">
+            <div class="overlay">
+                <h3>Aurora</h3>
+                <p>Luzes do norte</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+================================================================================
+  PROJETO 4 — LANDING PAGE COMPLETA (Avançado — Desafio Bônus)
+  Conceitos: TODOS — layout full-page, seções, Flexbox, responsividade,
+  bordas, sombras, transições, tipografia, cores
+================================================================================
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 4 — Landing Page</title>
+    <style>
+        /* ══ RESET GLOBAL ══ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ══ VARIÁVEIS CSS ══
+           Definimos as cores uma vez e reutilizamos.
+           Para mudar o esquema de cores inteiro,
+           basta alterar aqui!
+        */
+        :root {
+            --cor-primaria: #2c3e50;
+            --cor-secundaria: #3498db;
+            --cor-fundo: #f8f9fa;
+            --cor-texto: #333;
+            --cor-texto-claro: #777;
+            --cor-borda: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: var(--cor-texto);
+            line-height: 1.7;
+            background: var(--cor-fundo);
+        }
+
+        /* ══════════════════════════════════
+           HEADER — Fixo no topo.
+           ══════════════════════════════════ */
+        header {
+            background: var(--cor-primaria);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 60px;
+
+            /* Sombra sutil abaixo do header */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .logo span { color: var(--cor-secundaria); }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 20px 16px;
+            font-size: 0.9rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ══════════════════════════════════
+           HERO — Seção de destaque.
+           Usa Flexbox para centralizar tudo,
+           com fundo gradiente.
+           ══════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--cor-primaria), #1a252f);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 5rem;    /* mais padding-top por causa do header fixo */
+            min-height: 80vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 550px;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            background: var(--cor-secundaria);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* ══════════════════════════════════
+           SEÇÕES DE CONTEÚDO
+           ══════════════════════════════════ */
+        .secao {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .secao-titulo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+        }
+
+        .secao-sub {
+            text-align: center;
+            color: var(--cor-texto-claro);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ══════════════════════════════════
+           CARDS DE SERVIÇOS — Flex-wrap.
+           Cada card tem no mínimo 250px.
+           ══════════════════════════════════ */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .card {
+            flex: 1 1 250px;           /* cresce, encolhe, mínimo 250px */
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--cor-borda);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icone {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--cor-texto-claro);
+        }
+
+        /* ══════════════════════════════════
+           TABELA — Planos de preço.
+           ══════════════════════════════════ */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;           /* bordas arredondadas na tabela */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        th {
+            background: var(--cor-primaria);
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        tr:hover td {
+            background: #f0f7ff;       /* destaque leve no hover */
+        }
+
+        /* Destaque de coluna */
+        .destaque {
+            background: #ebf5fb;
+            font-weight: 600;
+        }
+
+        /* ══════════════════════════════════
+           FOOTER
+           ══════════════════════════════════ */
+        footer {
+            background: var(--cor-primaria);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--cor-secundaria);
+            text-decoration: none;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVO — Mobile
+           ══════════════════════════════════ */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: block;
+            }
+
+            .hero {
+                padding: 10rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cards {
+                flex-direction: column;
+            }
+
+            /* Tabela rola horizontalmente em mobile */
+            .tabela-wrapper {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══ HEADER FIXO ══ -->
+    <header>
+        <div class="logo">Tech<span>Solutions</span></div>
+        <nav>
+            <ul>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ══ HERO SECTION ══ -->
+    <section class="hero">
+        <h1>Soluções Digitais<br>para o Seu Negócio</h1>
+        <p>Transformamos ideias em produtos digitais com tecnologia de ponta, design centrado no usuário e metodologias ágeis.</p>
+        <a href="#servicos" class="btn">Conheça Nossos Serviços</a>
+    </section>
+
+    <!-- ══ SERVIÇOS ══ -->
+    <section id="servicos" class="secao">
+        <h2 class="secao-titulo">Nossos Serviços</h2>
+        <p class="secao-sub">Soluções completas do planejamento à entrega</p>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icone">🌐</div>
+                <h3>Desenvolvimento Web</h3>
+                <p>Sites e aplicações web responsivas, modernas e otimizadas para performance.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone">📱</div>
+                <h3>Apps Mobile</h3>
+                <p>Aplicativos nativos e híbridos para iOS e Android com experiência fluida.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone">🤖</div>
+                <h3>Inteligência Artificial</h3>
+                <p>Chatbots, automação inteligente e análise preditiva para o seu negócio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PLANOS ══ -->
+    <section id="planos" class="secao" style="background: white;">
+        <h2 class="secao-titulo">Planos e Preços</h2>
+        <p class="secao-sub">Escolha o plano ideal para a sua empresa</p>
+
+        <div class="tabela-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>Starter</th>
+                        <th class="destaque">Profissional</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Páginas</td>
+                        <td>Até 5</td>
+                        <td class="destaque">Até 20</td>
+                        <td>Ilimitadas</td>
+                    </tr>
+                    <tr>
+                        <td>Suporte</td>
+                        <td>E-mail</td>
+                        <td class="destaque">Chat + E-mail</td>
+                        <td>Dedicado 24/7</td>
+                    </tr>
+                    <tr>
+                        <td>SSL / HTTPS</td>
+                        <td>✓</td>
+                        <td class="destaque">✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Analytics</td>
+                        <td>Básico</td>
+                        <td class="destaque">Avançado</td>
+                        <td>Personalizado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preço</strong></td>
+                        <td><strong>R$ 99/mês</strong></td>
+                        <td class="destaque"><strong>R$ 249/mês</strong></td>
+                        <td><strong>Sob consulta</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ══ CONTATO ══ -->
+    <section id="contato" class="secao">
+        <h2 class="secao-titulo">Entre em Contato</h2>
+        <p class="secao-sub">Vamos conversar sobre o seu projeto</p>
+        <p style="text-align:center; font-size: 1.1rem;">
+            📧 <a href="mailto:contato@techsolutions.com" style="color: var(--cor-secundaria);">contato@techsolutions.com</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            📞 <a href="tel:+5511999999999" style="color: var(--cor-secundaria);">(11) 99999-9999</a>
+        </p>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+        <p>&copy; 2026 TechSolutions — Atividade prática de CSS3</p>
+        <p>Disciplina de Desenvolvimento Front-End para Web</p>
+    </footer>
+
+</body>
+</html>
+
+
+================================================================================
+  FIM DOS PROJETOS
+
+  Resumo:
+  - Projeto 1: Card de Perfil               (Básico)
+  - Projeto 2: Menu de Navegação Responsivo  (Básico)
+  - Projeto 3: Galeria de Imagens            (Intermediário)
+  - Projeto 4: Landing Page Completa         (Avançado — Bônus)
+
+  Cada projeto é uma página .html completa e independente.
+  Copie, salve como .html e abra no navegador para testar.
+  Use F12 → ícone de celular para testar responsividade.
+================================================================================

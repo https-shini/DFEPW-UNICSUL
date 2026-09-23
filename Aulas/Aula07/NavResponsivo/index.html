@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- Obrigatório: sem isso o celular renderiza como desktop -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Projeto 2 — Menu Responsivo</title>
+
+    <!-- Fontes (fallback definido no CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS: base comum a todos os projetos + estilo deste projeto -->
+    <link rel="stylesheet" href="../compartilhado/base.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript: todo o código fica nos arquivos .js
+         tema.js roda antes da página aparecer (evita "piscar" o tema errado) -->
+    <script src="../compartilhado/tema.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- ══════════ BARRA DE PROJETOS (comum a todos) ══════════ -->
+    <div class="barra-projetos">
+        <div class="barra-conteudo">
+            <span class="barra-marca">
+                <span class="barra-marca-icone" aria-hidden="true"></span>
+                <span class="barra-marca-texto">Aula 07</span>
+            </span>
+
+            <nav class="barra-nav" aria-label="Projetos da Aula 07">
+                <ul class="barra-lista">
+                <li><a class="barra-link" href="../CardProfile/index.html"><span class="rotulo-longo">Card de Perfil</span><span class="rotulo-curto">Perfil</span></a></li>
+                <li><a class="barra-link" href="../NavResponsivo/index.html" aria-current="page"><span class="rotulo-longo">Menu Responsivo</span><span class="rotulo-curto">Menu</span></a></li>
+                <li><a class="barra-link" href="../Galeria/index.html"><span class="rotulo-longo">Galeria de Imagens</span><span class="rotulo-curto">Galeria</span></a></li>
+                <li><a class="barra-link" href="../LandingPage/index.html"><span class="rotulo-longo">Landing Page</span><span class="rotulo-curto">Landing</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ══════════ HEADER FIXO DO PROJETO ══════════ -->
+    <header class="cabecalho" id="cabecalho">
+        <div class="cabecalho-conteudo">
+            <a href="#inicio" class="logo">Tech<span class="logo-destaque">Blog</span></a>
+
+            <nav class="menu" id="menu" aria-label="Navegação do TechBlog">
+                <ul class="menu-lista">
+                    <li><a href="#inicio" class="menu-link menu-link-ativo" aria-current="true">Início</a></li>
+                    <li><a href="#artigos" class="menu-link">Artigos</a></li>
+                    <li><a href="#sobre" class="menu-link">Sobre</a></li>
+                    <li><a href="#contato" class="menu-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ══════════ INÍCIO ══════════ -->
+        <section class="secao secao-inicio" id="inicio">
+            <div class="container">
+                <h1 class="titulo-principal">Bem-vindo ao TechBlog</h1>
+                <p class="texto-grande">
+                    Artigos curtos sobre desenvolvimento web, escritos por quem está aprendendo.
+                    Redimensione a janela ou use o DevTools (F12 → ícone de celular) para ver o menu
+                    mudar de horizontal para vertical.
+                </p>
+                <a href="#artigos" class="botao">Ler os artigos</a>
+            </div>
+        </section>
+
+        <!-- ══════════ ARTIGOS ══════════ -->
+        <section class="secao" id="artigos">
+            <div class="container">
+                <h2 class="secao-titulo">Artigos recentes</h2>
+
+                <div class="artigos">
+                    <article class="artigo">
+                        <p class="artigo-tag">CSS</p>
+                        <h3 class="artigo-titulo">Por que usar box-sizing: border-box</h3>
+                        <p class="artigo-texto">Com ele, 300px de largura continuam sendo 300px mesmo depois de somar padding e borda.</p>
+                    </article>
+                    <article class="artigo">
+                        <p class="artigo-tag">Flexbox</p>
+                        <h3 class="artigo-titulo">Centralizar um elemento em 3 linhas</h3>
+                        <p class="artigo-texto">display: flex, justify-content e align-items resolvem o problema mais antigo do CSS.</p>
+                    </article>
+                    <article class="artigo">
+                        <p class="artigo-tag">Responsivo</p>
+                        <h3 class="artigo-titulo">Media queries na prática</h3>
+                        <p class="artigo-texto">Como um único bloco @media transforma este menu em uma lista vertical no celular.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SOBRE ══════════ -->
+        <section class="secao secao-clara" id="sobre">
+            <div class="container">
+                <h2 class="secao-titulo">Sobre o header</h2>
+                <p class="texto">
+                    O header usa <code>position: fixed</code> e fica no topo enquanto a página rola.
+                    Ao descer, ele ganha uma sombra para se separar do conteúdo.
+                </p>
+                <p class="texto">
+                    O link do menu muda conforme a seção visível. O efeito de hover usa
+                    <code>transition</code> para suavizar a troca de cor; sem ela, a mudança seria brusca.
+                </p>
+            </div>
+        </section>
+
+        <!-- ══════════ CONTATO ══════════ -->
+        <section class="secao" id="contato">
+            <div class="container">
+                <h2 class="secao-titulo">Contato</h2>
+                <p class="texto">Sugestões de artigo são bem-vindas.</p>
+                <a href="mailto:contato@techblog.dev" class="botao">Enviar e-mail</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ══════════ RODAPÉ COM A AUTORIA (comum a todos) ══════════ -->
+    <footer class="rodape-autor">
+        <p>Projeto desenvolvido por <a class="rodape-autor-nome" href="https://gcruz.dev.br/"><span class="rodape-autor-nome">Guilherme de Souza Cruz</span></a></p>
+        <p class="rodape-autor-disciplina">Aula 07 — CSS3 | Desenvolvimento Front-End para Web | Prof. Marcos Venícios Araújo</p>
+    </footer>
+
+</body>
+</html>
